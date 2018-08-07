@@ -14,7 +14,7 @@ exports.handler = async function (event, context) {
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedIntentHandler,
-    )
+      )
       .addErrorHandlers(ErrorHandler)
       .create();
   }
@@ -91,4 +91,15 @@ const SessionEndedIntentHandler = {
   handle(handlerInput) {
     return handlerInput.responseBuilder.getResponse();
   }
+};
+
+const ErrorHandler = {
+  canHandle() {
+    return true;
+  },
+  handle(handlerInput, error) {
+    return handlerInput.responseBuilder
+      .speak('もう一度おねがいします')
+      .getResponse();
+  },
 };
